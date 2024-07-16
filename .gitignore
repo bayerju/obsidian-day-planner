@@ -1,6 +1,6 @@
 *.DS_Store
 # npm
-#node_modules
+node_modules
 
 # build
 *.js.map
@@ -12,5 +12,5 @@ test-vault/
 
 TODO.md
 .idea
-#.husky
+.husky
 data.json
