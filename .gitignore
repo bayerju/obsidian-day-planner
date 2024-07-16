@@ -1,0 +1,16 @@
+*.DS_Store
+# npm
+#node_modules
+
+# build
+*.js.map
+*.zip
+dist/
+coverage/
+.nyc_output/
+test-vault/
+
+TODO.md
+.idea
+#.husky
+data.json
