@@ -14,8 +14,8 @@
   <BlockControlButton
     slot="visible"
     cursor="grab"
-    label="Start resizing"
-    on:mousedown={onResize}
+    label="Resize block"
+    on:pointerdown={onResize}
   >
     <MoveVertical class="svg-icon" />
   </BlockControlButton>
@@ -23,14 +23,14 @@
     <BlockControlButton
       cursor="grab"
       label="Resize block and push neighboring blocks"
-      on:mousedown={onResizeWithNeighbors}
+      on:pointerdown={onResizeWithNeighbors}
     >
       <ArrowDownToLine class="svg-icon" />
     </BlockControlButton>
     <BlockControlButton
       cursor="grab"
-      label="Move block and shrink neighboring blocks"
-      on:mousedown={onResizeWithShrink}
+      label="Resize block and shrink neighboring blocks"
+      on:pointerdown={onResizeWithShrink}
     >
       <FoldVertical class="svg-icon" />
     </BlockControlButton>

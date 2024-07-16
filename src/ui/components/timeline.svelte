@@ -10,6 +10,7 @@
   import { ObsidianContext } from "../../types";
   import { isToday } from "../../util/moment";
   import { copy, getRenderKey } from "../../util/task-utils";
+  import { isTouchEvent } from "../../util/util";
   import { floatingUi } from "../actions/floating-ui";
   import { styledCursor } from "../actions/styled-cursor";
   import { EditMode } from "../hooks/use-edit/types";
@@ -47,7 +48,7 @@
 
 <svelte:window on:blur={cancelEdit} />
 <svelte:body use:styledCursor={$cursor.bodyCursor} />
-<svelte:document on:mouseup={cancelEdit} />
+<svelte:document on:pointerup={cancelEdit} />
 
 <Column visibleHours={getVisibleHours($settings)}>
   {#if isToday(actualDay)}
@@ -56,9 +57,15 @@
 
   <ScheduledTaskContainer
     {pointerOffsetY}
-    on:mousedown={handleContainerMouseDown}
+    on:pointerdown={(event) => {
+      if (isTouchEvent(event)) {
+        return;
+      }
+
+      handleContainerMouseDown();
+    }}
     on:mouseenter={handleMouseEnter}
-    on:mouseup={confirmEdit}
+    on:pointerup={confirmEdit}
   >
     {#each $displayedTasks.withTime as task (getRenderKey(task))}
       {#if task.calendar}
@@ -137,7 +144,7 @@
               },
             ],
           ]}
-          on:mouseup={() => handleTaskMouseUp(task)}
+          on:pointerup={() => handleTaskMouseUp(task)}
         />
       {/if}
     {/each}
